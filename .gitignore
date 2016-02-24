@@ -1,0 +1,9 @@
+FrontEnd/node_modules
+FrontEnd/dist
+FrontEnd/.tmp
+FrontEnd/.sass-cache
+FrontEnd/bower_components
+FrontEnd/.idea
+Backend/.idea
+Backend/out
+Backend/target
