@@ -1,5 +1,5 @@
 'use strict';
-socialNetworkApp.factory('AuthenticationService',["$resource","ConfigData", function($resource,ConfigData){
+socialNetworkApp.factory('AuthenticationService',["$resource","$localStorage","$location","ConfigData", function($resource,$localStorage,$location,ConfigData){
   var resource = $resource(ConfigData.url + ":" +ConfigData.port + "/authenticate",{},{ authenticate: {method:'POST'}});
 
   var doLogin = function(responseData){
@@ -7,17 +7,26 @@ socialNetworkApp.factory('AuthenticationService',["$resource","ConfigData", func
       //push error
       return;
     }
+    $localStorage.token = responseData.token;
+    $location.path("/");
 
-    //set Authenticated method
   };
+
 
 
   return {
     isUserLoggedIn: function(){
-      return false;
+      return $localStorage.token != null;
     },
 
     doLogIn: function(authenticationForm){
+
+      if(this.isUserLoggedIn())
+      {
+        //push message user already loagged in, redirecting to feed
+        return;
+      }
+
       authenticationForm.hashPassword = authenticationForm.password;
       resource.authenticate({},authenticationForm).$promise.then(function(responseData){
         doLogin(responseData);

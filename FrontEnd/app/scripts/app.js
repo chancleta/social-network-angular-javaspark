@@ -21,32 +21,40 @@ var socialNetworkApp =
   .config( ['$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl',
+        controllerAs: 'feed'
+      })
+      .when('/login', {
         templateUrl: 'views/loginForm.html',
         controller: 'AuthenticationCtrl',
         controllerAs: 'authentication'
       })
+      .when('/404', {
+        templateUrl: 'views/404.html'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/404'
       });
 
 
-    //$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-    //  return {
-    //    'request': function (config) {
-    //      config.headers = config.headers || {};
-    //      if ($localStorage.token) {
-    //        config.headers.Authorization = 'Bearer ' + $localStorage.token;
-    //      }
-    //      return config;
-    //    },
-    //    'responseError': function (response) {
-    //      if (response.status === 401 || response.status === 403) {
-    //        $location.path('/');
-    //      }
-    //      return $q.reject(response);
-    //    }
-    //  };
-    //}]);
+    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+      return {
+        'request': function (config) {
+          config.headers = config.headers || {};
+          if ($localStorage.token) {
+            config.headers.Authorization = 'Bearer ' + $localStorage.token;
+          }
+          return config;
+        },
+        'responseError': function (response) {
+          if (response.status === 401 || response.status === 403) {
+            $location.path('/');
+          }
+          return $q.reject(response);
+        }
+      };
+    }]);
   }])
     .constant("ConfigData", {url:"http://localhost", port: 9001})
 
