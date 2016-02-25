@@ -1,6 +1,6 @@
 'use strict';
-socialNetworkApp.factory('AuthenticationService', function($resource){
-  var resource = $resource("http://localhost:9001/authenticate",{},{ authenticate: {method:'POST'}});
+socialNetworkApp.factory('AuthenticationService',["$resource","ConfigData", function($resource,ConfigData){
+  var resource = $resource(ConfigData.url + ":" +ConfigData.port + "/authenticate",{},{ authenticate: {method:'POST'}});
 
   var doLogin = function(responseData){
     if(responseData.error){
@@ -35,4 +35,4 @@ socialNetworkApp.factory('AuthenticationService', function($resource){
     }
 
   };
-});
+}]);

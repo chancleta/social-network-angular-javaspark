@@ -47,5 +47,6 @@ var socialNetworkApp =
     //    }
     //  };
     //}]);
-  }]);
+  }])
+    .constant("ConfigData", {url:"http://localhost", port: 9001})
 
