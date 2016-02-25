@@ -7,3 +7,5 @@ FrontEnd/.idea
 Backend/.idea
 Backend/out
 Backend/target
+Backend/target/*.iml
+BackEnd/src/main/java/META-INF/MANIFEST.MF
