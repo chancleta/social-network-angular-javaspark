@@ -1,8 +1,13 @@
 'use strict';
 
-socialNetworkApp.controller('FeedCtrl',["$scope","$location","AuthenticationService", function FeedCtrl($scope, $location, AuthenticationService){
+socialNetworkApp.controller('FeedCtrl',["$scope","$location","AuthenticationService","FeedService", function FeedCtrl($scope, $location, AuthenticationService,FeedService){
 
   if(!AuthenticationService.isUserLoggedIn()){
     $location.path("/login");
   }
+  //$scope.feed  = FeedService.getFeeList();
+   FeedService.getFeeList().$promise.then(function(feedData){
+     $scope.feed = feedData;
+  });
+
 }]);

@@ -30,7 +30,8 @@ public class AuthenticationController extends BaseJsonController{
             throw new InvalidCompanyDataException(user.getErrorMessage());
 
         Map<String,Object> claim = new HashMap<>();
-        claim.put("userid",new Integer(123123123));
+        claim.put("SomeDataSomeShit", "AnotherDataAnotherShit");
+
         return  new Token((new JWTSigner(SECRET)).sign(claim));
 
     }),toJson());

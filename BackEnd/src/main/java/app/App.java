@@ -2,11 +2,13 @@ package app;
 
 import api.AuthenticationController;
 import api.CompanyController;
+import api.FeedListController;
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.internal.org.apache.commons.codec.binary.Base64;
 import com.google.gson.GsonBuilder;
 import services.CompanyService;
+import services.FeedService;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
@@ -31,10 +33,11 @@ public class App {
         Spark.before("*",(request, response) -> {
             response.header("Access-Control-Allow-Origin", "http://localhost:9000");
             response.header("Access-Control-Request-Method", "POST, GET, OPTIONS");
-            response.header("Access-Control-Allow-Headers", "accept, content-type");
+            response.header("Access-Control-Allow-Headers", request.headers("Access-Control-Request-Headers"));
         });
         new CompanyController(CompanyService.getInstance());
         new AuthenticationController();
+        new FeedListController(FeedService.getInstance());
 
        // System.out.println(  CompanyService.getInstance().getAllCompanies().get(0).isValid());
 //
