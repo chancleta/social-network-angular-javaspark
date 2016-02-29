@@ -308,3 +308,96 @@ body {
 .widget .comment-text { font-size: 12px; }
 .widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
 .panel-body .thumbnail img{width: 100%; height: auto}
+
+$circle-size: 300px;
+$circle-background: #a3c9f8;
+$circle-color: #337ab7;
+$inset-size: 250px;
+$inset-color: #fff;
+$transition-length: 1s;
+$shadow: 6px 6px 10px rgba(0,0,0,0.2);
+$percentage-color: #337ab7;
+$percentage-font-size: 22px;
+$percentage-text-width: 57px;
+.left-panel .panel-default .panel-body .thumbnail{
+  margin: 0 auto;
+}
+
+.thumbnail .radial-progress{
+  display: none;
+}
+
+.radial-progress {
+
+  margin: 0 auto;
+  width: $circle-size;
+  height: $circle-size;
+
+  background-color: $circle-background;
+  border-radius: 50%;
+  .circle {
+    .mask, .fill {
+      width: $circle-size;
+      height: $circle-size;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .mask, .fill {
+      -webkit-backface-visibility: hidden;
+      transition: -webkit-transform $transition-length;
+      transition: -ms-transform $transition-length;
+      transition: transform $transition-length;
+      border-radius: 50%;
+    }
+    .mask {
+      clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+      .fill {
+        clip: rect(0px, $circle-size/2, $circle-size, 0px);
+        background-color: $circle-color;
+      }
+    }
+  }
+  .inset {
+    width: $inset-size;
+    height: $inset-size;
+    position: absolute;
+    margin-left: ($circle-size - $inset-size)/2;
+    margin-top: ($circle-size - $inset-size)/2;
+
+    background-color: $inset-color;
+    border-radius: 50%;
+    .percentage {
+      height: $percentage-font-size;
+      width: $percentage-text-width;
+      overflow: hidden;
+
+      position: absolute;
+      top: ($inset-size - $percentage-font-size) / 2;
+      left: ($inset-size - $percentage-text-width) / 2;
+
+      line-height: 1;
+
+    }
+  }
+
+  $i: 0;
+  $increment: 180deg / 100;
+  @while ($i <= 100) {
+  &[data-progress="#{$i}"] {
+    .circle {
+      .mask.full, .fill {
+        -webkit-transform: rotate($increment * $i);
+        -ms-transform: rotate($increment * $i);
+        transform: rotate($increment * $i);
+      }
+      .fill.fix {
+        -webkit-transform: rotate($increment * $i * 2);
+        -ms-transform: rotate($increment * $i * 2);
+        transform: rotate($increment * $i * 2);
+      }
+    }
+  }
+  $i: $i + 1;
+}
+}

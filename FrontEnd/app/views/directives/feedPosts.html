@@ -1,5 +1,6 @@
 <div id="feedcontainer">
-<div ng-repeat="singlePost in feedposts"  class="left-panel row post" id="{{singlePost.id}}">
+
+<div ng-repeat="singlePost in feedposts"  class="left-panel row post" id="{{singlePost.id}}" on-ng-repeat-done>
     <div class="col-xs-12 col-sm-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -24,7 +25,21 @@
 
           <div class="commentContainer">
             <div class="thumbnail">
-              <a href="#"><img src="" alt=""/></a>
+              <div class="radial-progress" data-progress="0">
+                <div class="circle">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                    <div class="fill fix"></div>
+                  </div>
+                </div>
+                <div class="inset">
+                  <div class="percentage">
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="icerik-bilgi">

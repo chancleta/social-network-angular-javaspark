@@ -56,5 +56,5 @@ var socialNetworkApp =
       };
     }]);
   }])
-    .constant("ConfigData", {url:"http://localhost", port: 9001})
+    .constant("ConfigData", {url:"http://10.100.29.137", port: 9001});
 

@@ -22,7 +22,7 @@ public class FeedListController extends BaseJsonController{
         super();
 
 
-        get("/feed", (request, response) -> { Thread.sleep(1000); return feedService.getFecthFeedList(10);}, toJson());
+        get("/feed", (request, response) -> { return feedService.getFecthFeedList(10);}, toJson());
 
         options("/feed", (request, response) -> "");
 

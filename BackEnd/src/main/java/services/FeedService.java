@@ -56,7 +56,9 @@ public class FeedService {
                 Feed feed = new Feed();
                 feed.setName(randomPersonData.fullName());
                 feed.setId(CompanyService.getInstance().getRandomID());
-                feed.setImgURL("http://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
+
+                int randomImage =  (int) (Math.random() * (964 - 1)) + 1;
+                feed.setImgURL("https://unsplash.it/600/600?image=" + randomImage );
                 feedList.add(feed);
             }
         );
