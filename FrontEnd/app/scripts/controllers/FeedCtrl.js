@@ -8,6 +8,8 @@ socialNetworkApp.controller('FeedCtrl',["$scope","$location","AuthenticationServ
   //$scope.feed  = FeedService.getFeeList();
    FeedService.getFeeList().$promise.then(function(feedData){
      $scope.feed = feedData;
-  });
+     FeedService.lazyLoadPosts(feedData);
+
+   });
 
 }]);

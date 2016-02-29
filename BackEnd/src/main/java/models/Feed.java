@@ -8,6 +8,15 @@ public class Feed {
     private String name;
     private String imgURL;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private long id;
     public String getName() {
         return name;
     }

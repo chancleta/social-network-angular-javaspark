@@ -55,6 +55,7 @@ public class FeedService {
                 Person randomPersonData = fairy.person();
                 Feed feed = new Feed();
                 feed.setName(randomPersonData.fullName());
+                feed.setId(CompanyService.getInstance().getRandomID());
                 feed.setImgURL("http://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
                 feedList.add(feed);
             }
