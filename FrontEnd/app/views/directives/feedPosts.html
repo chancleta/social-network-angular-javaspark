@@ -1,7 +1,9 @@
 <div id="feedcontainer">
+  <div id="touchloader" style="text-align: center;display: none; background: black;color: white;">Loading.....</div>
 
 <div ng-repeat="singlePost in feedposts"  class="left-panel row post" id="{{singlePost.id}}" on-ng-repeat-done>
-    <div class="col-xs-12 col-sm-12 col-lg-12">
+
+  <div class="col-xs-12 col-sm-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <section class="post-heading">
@@ -95,6 +97,8 @@
       </div>
     </div>
   </div>
+
+
 </div>
 
 
